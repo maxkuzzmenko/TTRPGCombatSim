@@ -1,0 +1,46 @@
+# Hardened sshd_config for DnD game server
+
+Port 22
+AddressFamily any
+ListenAddress 0.0.0.0
+
+# Host keys (generated at runtime)
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+# Authentication
+PermitRootLogin no
+PasswordAuthentication yes
+AllowUsers dnd
+MaxAuthTries 3
+LoginGraceTime 30
+PubkeyAuthentication no
+PermitEmptyPasswords no
+
+# Disable unnecessary auth methods
+KerberosAuthentication no
+GSSAPIAuthentication no
+HostbasedAuthentication no
+ChallengeResponseAuthentication no
+PermitUserEnvironment no
+
+# Session limits
+MaxSessions 5
+MaxStartups 3:50:10
+
+# Idle timeout (5 min idle = disconnect)
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# Disable forwarding / tunneling
+X11Forwarding no
+AllowTcpForwarding no
+AllowAgentForwarding no
+PermitTunnel no
+GatewayPorts no
+
+# Misc hardening
+Banner none
+PrintMotd no
+UseDNS no
+Subsystem sftp /bin/false

@@ -1,0 +1,35 @@
+services:
+  dnd-ssh:
+    build: .
+    container_name: dnd-server
+    ports:
+      - "2222:22"
+    environment:
+      - DND_PASSWORD=${DND_PASSWORD:-dragon20sided}
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
+      - SYS_CHROOT
+      - AUDIT_WRITE
+    volumes:
+      - ./shared:/opt/shared:ro
+    networks:
+      - dnd-net
+    # To expose via ngrok:  ngrok tcp 2222
+    # To expose via playit: point playit at localhost:2222
+
+networks:
+  dnd-net:
+    internal: true
