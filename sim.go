@@ -675,11 +675,11 @@ func runCombat(party []*Character, enemies []*Enemy, reader *bufio.Reader) {
 		ae := aliveEnemies(enemies)
 
 		if len(ap) == 0 {
-			fmt.Println("\n💀 All players are knocked out. Defeat.")
+			fmt.Println("\n  All players are knocked out. Defeat.")
 			break
 		}
 		if len(ae) == 0 {
-			fmt.Println("\n🏆 All enemies defeated! Victory!")
+			fmt.Println("\n  All enemies defeated! Victory!")
 			break
 		}
 
