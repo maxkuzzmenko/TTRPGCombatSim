@@ -1,11 +1,11 @@
 services:
-  dnd-ssh:
+  sim-ssh:
     build: .
-    container_name: dnd-server
+    container_name: sim-server
     ports:
       - "2222:22"
     environment:
-      - DND_PASSWORD=${DND_PASSWORD:-dragon20sided}
+      - SIM_PASSWORD=${SIM_PASSWORD:-dragons!!1!}
     restart: unless-stopped
     deploy:
       resources:
@@ -26,10 +26,8 @@ services:
     volumes:
       - ./shared:/opt/shared:ro
     networks:
-      - dnd-net
-    # To expose via ngrok:  ngrok tcp 2222
-    # To expose via playit: point playit at localhost:2222
+      - sim-net
 
 networks:
-  dnd-net:
-    internal: true
+  sim-net:
+    internal: false

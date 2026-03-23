@@ -11,7 +11,7 @@ HostKey /etc/ssh/ssh_host_rsa_key
 # Authentication
 PermitRootLogin no
 PasswordAuthentication yes
-AllowUsers dnd
+AllowUsers sim
 MaxAuthTries 3
 LoginGraceTime 30
 PubkeyAuthentication no

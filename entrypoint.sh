@@ -2,8 +2,8 @@
 set -e
 
 # Set password from environment variable (default: dragon20sided)
-DND_PASSWORD="${DND_PASSWORD:-dragon20sided}"
-echo "dnd:${DND_PASSWORD}" | chpasswd
+SIM_PASSWORD="${SIM_PASSWORD:-dragons!!1!}"
+echo "sim:${SIM_PASSWORD}" | chpasswd
 
 # Generate host keys if they don't exist
 if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
@@ -11,9 +11,9 @@ if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
     ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ""
 fi
 
-echo "=== DnD SSH Server Ready ==="
-echo "Connect with: ssh dnd@<host> -p 2222"
-echo "Password: ${DND_PASSWORD}"
+echo "=== Sim SSH Server Ready ==="
+echo "Connect with: ssh sim@<host> -p 2222"
+echo "Password: ${SIM_PASSWORD}"
 
 # Start sshd in foreground
 exec /usr/sbin/sshd -D -e
